@@ -4,24 +4,17 @@ import PropTypes from 'prop-types';
 export default class Form extends Component {
   render() {
     const {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-      hasTrunfo,
-      isSaveButtonDisabled,
-      onInputChange,
-      onSaveButtonClick,
+      cardName, cardDescription,
+      cardAttr1, cardAttr2, cardAttr3,
+      cardImage, cardRare,
+      cardTrunfo, hasTrunfo, isSaveButtonDisabled,
+      onInputChange, onSaveButtonClick,
     } = this.props;
 
     return (
       <form>
-        <label htmlFor="cardName">
-          Nome
+        <label htmlFor="name-input">
+          <p className="label-title">Nome</p>
           <input
             id="name-input"
             name="cardName"
@@ -32,22 +25,24 @@ export default class Form extends Component {
           />
         </label>
 
-        <label htmlFor="description">
-          Descrição
-          <textarea
-            id="description-input"
-            name="description"
-            data-testid="description-input"
-            value={ cardDescription }
-            onChange={ onInputChange }
-          />
-        </label>
+        <div>
+          <label htmlFor="description-input">
+            <p className="label-title">Descrição</p>
+            <textarea
+              id="description-input"
+              name="cardDescription"
+              data-testid="description-input"
+              value={ cardDescription }
+              onChange={ onInputChange }
+            />
+          </label>
+        </div>
 
         <label htmlFor="attr1-input">
-          Ataque
+          <p className="label-title">Ataque</p>
           <input
             id="attr1-input"
-            name="attack"
+            name="cardAttr1"
             data-testid="attr1-input"
             type="number"
             value={ cardAttr1 }
@@ -56,10 +51,10 @@ export default class Form extends Component {
         </label>
 
         <label htmlFor="attr2-input">
-          Defesa
+          <p className="label-title">Defesa</p>
           <input
             id="attr2-input"
-            name="defense"
+            name="cardAttr2"
             data-testid="attr2-input"
             type="number"
             value={ cardAttr2 }
@@ -68,10 +63,10 @@ export default class Form extends Component {
         </label>
 
         <label htmlFor="attr3-input">
-          Velocidade
+          <p className="label-title">Velocidade</p>
           <input
             id="attr3-input"
-            name="speed"
+            name="cardAttr3"
             data-testid="attr3-input"
             type="number"
             value={ cardAttr3 }
@@ -80,10 +75,10 @@ export default class Form extends Component {
         </label>
 
         <label htmlFor="image-input">
-          Imagem
+          <p className="label-title">Imagem</p>
           <input
             id="image-input"
-            name="image"
+            name="cardImage"
             data-testid="image-input"
             type="text"
             value={ cardImage }
@@ -91,11 +86,11 @@ export default class Form extends Component {
           />
         </label>
 
-        <label htmlFor="rare-input">
-          Raridade
+        <label id="label-rarity" htmlFor="rare-input">
+          <span className="label-title">Raridade</span>
           <select
             id="rare-input"
-            name="rarity"
+            name="cardRare"
             data-testid="rare-input"
             value={ cardRare }
             onChange={ onInputChange }
@@ -106,16 +101,16 @@ export default class Form extends Component {
           </select>
         </label>
 
-        <label htmlFor="trunfo-input">
-          Super Trunfo
+        <label id="label-trunfo" htmlFor="trunfo-input">
           <input
             id="trunfo-input"
-            name="cardSuper"
+            name="cardTrunfo"
             data-testid="trunfo-input"
             type="checkbox"
             checked={ cardTrunfo }
             onChange={ onInputChange }
           />
+          <span className="label-title">Super Trunfo</span>
         </label>
 
         <button
