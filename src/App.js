@@ -22,12 +22,43 @@ class App extends React.Component {
     };
   }
 
+  handleError() {
+    const {
+      cardName, cardDescription,
+      cardAttr1, cardAttr2, cardAttr3,
+      cardImage, cardRare,
+    } = this.state;
+
+    const minNumber = 0;
+    const maxNumber = 90;
+    const maxTotal = 210;
+    const attributes = [Number(cardAttr1), Number(cardAttr2), Number(cardAttr3)];
+    const verifyAttr = attributes
+      .every((attr) => (attr >= minNumber && attr <= maxNumber));
+    const total = (Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) > maxTotal);
+
+    const errorCases = [
+      !cardName.length,
+      !cardDescription.length,
+      !cardImage.length,
+      !cardRare.length,
+      !verifyAttr,
+      total,
+    ];
+
+    const formOk = errorCases.every((error) => error !== true);
+
+    this.setState({
+      isSaveButtonDisabled: !formOk,
+    });
+  }
+
   onInputChange({ target }) {
     const { name, value } = target;
 
     this.setState({
       [name]: value,
-    });
+    }, this.handleError);
   }
 
   render() {
