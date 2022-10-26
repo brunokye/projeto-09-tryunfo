@@ -3,26 +3,21 @@ import Card from './components/Card';
 import Form from './components/Form';
 
 class App extends React.Component {
-  constructor() {
-    super();
+  state = {
+    cardName: '',
+    cardDescription: '',
+    cardAttr1: '',
+    cardAttr2: '',
+    cardAttr3: '',
+    cardImage: '',
+    cardRare: '',
+    cardTrunfo: false,
+    hasTrunfo: false,
+    isSaveButtonDisabled: true,
+    savedCards: [],
+  };
 
-    this.onInputChange = this.onInputChange.bind(this);
-
-    this.state = {
-      cardName: '',
-      cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
-      cardImage: '',
-      cardRare: '',
-      cardTrunfo: false,
-      hasTrunfo: false,
-      isSaveButtonDisabled: true,
-    };
-  }
-
-  handleError() {
+  handleError = () => {
     const {
       cardName, cardDescription,
       cardAttr1, cardAttr2, cardAttr3,
@@ -51,15 +46,46 @@ class App extends React.Component {
     this.setState({
       isSaveButtonDisabled: !formOk,
     });
-  }
+  };
 
-  onInputChange({ target }) {
+  onInputChange = ({ target }) => {
     const { name, value } = target;
 
     this.setState({
       [name]: value,
     }, this.handleError);
-  }
+  };
+
+  onSaveButtonClick = (event) => {
+    event.preventDefault();
+
+    const {
+      cardName, cardDescription,
+      cardAttr1, cardAttr2, cardAttr3,
+      cardImage, cardRare,
+    } = this.state;
+
+    const newValue = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+    };
+
+    this.setState((oldValue) => ({
+      savedCards: [...oldValue.savedCards, newValue],
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: 'normal',
+    }));
+  };
 
   render() {
     const {
@@ -68,6 +94,7 @@ class App extends React.Component {
       cardImage, cardRare,
       cardTrunfo, hasTrunfo, isSaveButtonDisabled,
     } = this.state;
+    const { onInputChange, onSaveButtonClick } = this;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -82,7 +109,8 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
-          onInputChange={ this.onInputChange }
+          onInputChange={ onInputChange }
+          onSaveButtonClick={ onSaveButtonClick }
         />
         <Card
           cardName={ cardName }

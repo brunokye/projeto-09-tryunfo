@@ -7,7 +7,7 @@ export default class Form extends Component {
       cardName, cardDescription,
       cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare,
-      cardTrunfo, hasTrunfo, isSaveButtonDisabled,
+      cardTrunfo, isSaveButtonDisabled,
       onInputChange, onSaveButtonClick,
     } = this.props;
 
