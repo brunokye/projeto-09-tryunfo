@@ -11,6 +11,10 @@ export default class Form extends Component {
       onInputChange, onSaveButtonClick,
     } = this.props;
 
+    const yesTrunfo = (
+      <span id="check-trunfo">Você já tem um Super Trunfo em seu baralho</span>
+    );
+
     const noTrunfo = (
       <label id="check-trunfo" htmlFor="trunfo-input">
         <input
@@ -23,10 +27,6 @@ export default class Form extends Component {
         />
         <span className="check-title">Super Trunfo</span>
       </label>
-    );
-
-    const yesTrunfo = (
-      <span id="label-trunfo">Você já tem um Super Trunfo em seu baralho</span>
     );
 
     return (

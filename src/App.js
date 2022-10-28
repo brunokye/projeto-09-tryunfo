@@ -79,6 +79,7 @@ class App extends React.Component {
       cardAttr3,
       cardImage,
       cardRare,
+      cardTrunfo,
     };
 
     this.setState((oldValue) => ({
@@ -91,6 +92,7 @@ class App extends React.Component {
       cardTrunfo: false,
       cardImage: '',
       cardRare: 'normal',
+      isSaveButtonDisabled: true,
     }));
   };
 
@@ -121,6 +123,7 @@ class App extends React.Component {
           onSaveButtonClick={ onSaveButtonClick }
           savedCards={ savedCards }
         />
+        <h1>Preview</h1>
         <Card
           cardName={ cardName }
           cardDescription={ cardDescription }
@@ -131,6 +134,22 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
         />
+
+        <h1>Saved Cards</h1>
+        { savedCards.map((saved) => (
+          <div key={ saved.cardName }>
+            <Card
+              cardName={ saved.cardName }
+              cardDescription={ saved.cardDescription }
+              cardAttr1={ saved.cardAttr1 }
+              cardAttr2={ saved.cardAttr2 }
+              cardAttr3={ saved.cardAttr3 }
+              cardImage={ saved.cardImage }
+              cardRare={ saved.cardRare }
+              cardTrunfo={ saved.cardTrunfo }
+            />
+          </div>
+        ))}
       </div>
     );
   }
