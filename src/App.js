@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
+import Filter from './components/Filter';
 
 class App extends React.Component {
   state = {
@@ -15,6 +16,7 @@ class App extends React.Component {
     hasTrunfo: false,
     isSaveButtonDisabled: true,
     savedCards: [],
+    nameFilter: '',
   };
 
   handleError = () => {
@@ -118,8 +120,10 @@ class App extends React.Component {
       cardImage, cardRare,
       cardTrunfo, hasTrunfo,
       isSaveButtonDisabled, savedCards,
+      nameFilter,
     } = this.state;
     const { onInputChange, onSaveButtonClick, handleDelete } = this;
+
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -138,6 +142,7 @@ class App extends React.Component {
           onSaveButtonClick={ onSaveButtonClick }
           savedCards={ savedCards }
         />
+
         <h1>Preview</h1>
         <Card
           cardName={ cardName }
@@ -149,6 +154,9 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
         />
+
+        <h2>Filtros</h2>
+        <Filter nameFilter={ nameFilter } />
 
         <h1>Saved Cards</h1>
         { savedCards.map((saved) => (
