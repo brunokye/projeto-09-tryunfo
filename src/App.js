@@ -96,6 +96,21 @@ class App extends React.Component {
     }));
   };
 
+  handleDelete = (name, trunfo) => {
+    const { savedCards } = this.state;
+    const deleteCard = savedCards.filter(({ cardName }) => cardName !== name);
+
+    if (trunfo) {
+      this.setState({
+        hasTrunfo: false,
+      });
+    }
+
+    this.setState({
+      savedCards: deleteCard,
+    });
+  };
+
   render() {
     const {
       cardName, cardDescription,
@@ -104,7 +119,7 @@ class App extends React.Component {
       cardTrunfo, hasTrunfo,
       isSaveButtonDisabled, savedCards,
     } = this.state;
-    const { onInputChange, onSaveButtonClick } = this;
+    const { onInputChange, onSaveButtonClick, handleDelete } = this;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -148,6 +163,14 @@ class App extends React.Component {
               cardRare={ saved.cardRare }
               cardTrunfo={ saved.cardTrunfo }
             />
+
+            <button
+              type="button"
+              data-testid="delete-button"
+              onClick={ () => handleDelete(saved.cardName, saved.cardTrunfo) }
+            >
+              Excluir
+            </button>
           </div>
         ))}
       </div>
